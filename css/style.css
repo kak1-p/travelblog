@@ -1,0 +1,276 @@
+@charset "UTF-8";
+html{
+  font-size: 100%;
+}
+img{
+  max-width: 100%;
+}
+body{
+  font-size: 1rem;
+  padding-top: 90px;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+.container{
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+.more{
+  font-size: 0.8rem;
+  text-align: center;
+}
+/*
+疑似要素で下線を設定するために、「position: relative;」を設定
+*/
+.more a{
+  padding-bottom: 1px;
+  color: black;
+  position: relative;
+}
+/*
+「position: absolute;」を設定し、left、bottomで下線の位置を調整
+widthとheightで線の長さと高さを設定
+疑似要素で線を表示させるためには、「content: '';」を設定すること
+「transition: all 200ms ease;」でホバー時の速度などを設定
+*/
+.more a::after{
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: black;
+  transition: all 200ms ease;
+}
+/*
+ホバー時の下線の設定
+「opacity: 0;」下線を非表示
+「transform: translateY(3px);」下に3px移動
+→下に3px移動しながら下線を非表示にする
+*/
+.more a:hover::after{
+  opacity: 0;
+  transform: translateY(3px);
+}
+
+/*
+「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+設定している場合は、z-indexの数値が大きい方が前面に表示される
+*/
+header{
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  height: 90px;
+}
+h1{
+  margin: 15px;
+  line-height: 1px;
+}
+/*
+「display: inline-block;」でリンクを親要素の範囲に広げる
+※blockを指定すると横幅いっぱいまで広がってしまうため、
+inline-blockを設定している
+*/
+h1 a{
+  display: inline-block;
+}
+header ul{
+  display: flex;
+  background-color: black;
+  justify-content: flex-start;
+  align-items: center;
+}
+header li{
+  padding: 10px 60px 10px 15px;
+  font-size: 0.8rem;
+}
+header li a{
+  color: white;
+}
+
+.pickups{
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+.pickup{
+  width: 32%;
+}
+.pickup-title{
+  font-size: 1rem;
+  margin: 15px 0;
+}
+
+.contents{
+  display: flex;
+  justify-content: space-between;
+  margin: 60px auto;
+}
+.main-contents{
+  width: 65%;
+}
+.content{
+  margin-bottom: 65px;
+}
+.content-title{
+  font-size: 1.5rem;
+  margin: 10px 0 15px 0;
+}
+.content ul{
+  display: flex;
+  margin-bottom: 10px;
+}
+.content li{
+  font-size: 0.8rem;
+  margin-right: 15px;
+}
+.text{
+  padding: 10px 40px 30px 40px;
+}
+
+.side-contents{
+  width: 30%;
+  padding: 20px;
+}
+h3{
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+.author, .rankings, .archives{
+  text-align: center;
+}
+.author{
+  margin-bottom: 60px;
+}
+.author img{
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+.side-contents p{
+  font-size: 0.8rem;
+  text-align: left;
+}
+.rankings{
+  margin-bottom: 40px;
+}
+.ranking{
+  margin-bottom: 20px;
+}
+.archives ul{
+  border-top: solid 1px gray;
+}
+.archives li{
+  border-bottom: solid 1px gray;
+  padding: 15px;
+}
+footer{
+  background-color: lightgray;
+  padding: 0 16px;
+}
+.items{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  font-size: 0.8rem;
+}
+.item{
+  width: 30%;
+}
+.item h3{
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.about{
+  margin: 20px 0;
+}
+.about li{
+  margin-bottom: 5px;
+}
+.about-list{
+  position: relative;
+  display: block;
+  padding-left: 12px;
+  color: black;
+}
+/*
+疑似要素で三角矢印を表示
+border～プロパティで三角を作り、positionで位置調整
+*/
+.about-list::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -2%;
+}
+.menu{
+  border-top: solid 1px black;
+}
+.menu-list{
+  border-bottom: solid 1px black;
+  padding: 15px;
+  text-align: left;
+}
+.copy{
+  font-size: 0.7rem;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+
+@media screen and (max-width: 767px){
+  h1{
+    padding: 20px 16px;
+  }
+  nav{
+    overflow-x: scroll;
+  }
+
+  .pickups{
+    flex-direction: column;
+    padding-top: 140px;
+  }
+  .pickup{
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .container{
+    flex-direction: column;
+  }
+  .main-contents{
+    width: 100%;
+  }
+
+  .side-contents{
+    width: 100%;
+    padding: 0;
+  }
+
+  footer{
+    flex-direction: column;
+  }
+  .item{
+    width: 100%;
+    margin-bottom: 30%;
+  }
+}
